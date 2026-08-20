@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboPulse AI Toolkit</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #eef5ff;
+            margin: 0;
+            color: #222
+        }
+
+        header {
+            background: #1f3b73;
+            color: white;
+            text-align: center;
+            padding: 25px
+        }
+
+        .container {
+            width: 85%;
+            margin: 25px auto
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #aaa
+        }
+
+        h2 {
+            color: #1f3b73
+        }
+
+        input,
+        button {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #aaa;
+            border-radius: 5px
+        }
+
+        button {
+            background: #1f3b73;
+            color: white;
+            cursor: pointer
+        }
+
+        button:hover {
+            background: #2f6fd8
+        }
+
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #164a9c
+        }
+
+        #robot {
+            font-size: 60px;
+            text-align: center;
+            margin: 15px
+        }
+
+        .grid {
+            display: grid;
+            gap: 5px;
+            margin-top: 15px
+        }
+
+        .cell {
+            background: #dbe8ff;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #1f3b73
+        }
+
+        footer {
+            background: #1f3b73;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>RoboPulse AI Toolkit</h1>
+        <p>Interactive AI & Robotics Experiments</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Word Analyzer -->
+        <div class="box">
+            <h2>AI Word Analyzer</h2>
+            <p>Enter a sentence to find the shortest and longest word.</p>
+            <input type="text" id="sentence" placeholder="Enter a sentence">
+            <button onclick="analyzeWords()">Analyze</button>
+            <p id="wordResult" class="result"></p>
+        </div>
+
+        <!-- AI Readiness -->
+        <div class="box">
+            <h2>AI Readiness Score</h2>
+            <p>Enter your number of AI projects and technologies known.</p>
+            <input type="number" id="projects" placeholder="AI Projects">
+            <input type="number" id="skills" placeholder="Technologies">
+            <button onclick="calculateScore()">Calculate</button>
+            <p id="scoreResult" class="result"></p>
+        </div>
+
+        <!-- Robot Grid -->
+        <div class="box">
+            <h2>Robot Grid Generator</h2>
+            <p>Enter rows and columns to create a robot grid.</p>
+            <input type="number" id="rows" placeholder="Rows">
+            <input type="number" id="columns" placeholder="Columns">
+            <button onclick="createGrid()">Build Grid</button>
+            <div id="robotGrid" class="grid"></div>
+        </div>
+
+        <!-- Robot Status -->
+        <div class="box">
+            <h2>Robot Control Panel</h2>
+            <div id="robot">🤖</div>
+            <p id="status" class="result">Robot Status: OFFLINE</p>
+            <button id="powerButton">Power ON</button>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 RoboPulse | AI & Robotics Blog</p>
+    </footer>
+
+    <script>
+
+        // Find shortest and longest word
+        function analyzeWords() {
+            let text = document.getElementById("sentence").value;
+            let words = text.trim().split(/\s+/);
+
+            if (!text.trim()) {
+                document.getElementById("wordResult").innerHTML = "Please enter a sentence.";
+                return;
+            }
+
+            let shortest = words[0];
+            let longest = words[0];
+
+            for (let word of words) {
+                if (word.length < shortest.length) shortest = word;
+                if (word.length > longest.length) longest = word;
+            }
+
+            document.getElementById("wordResult").innerHTML =
+                "Shortest: " + shortest + " | Longest: " + longest;
+        }
+
+        // Calculate AI score
+        function calculateScore() {
+            let projects = parseInt(document.getElementById("projects").value);
+            let skills = parseInt(document.getElementById("skills").value);
+
+            let score = (projects * 10) + (skills * 5);
+
+            if (score > 100) score = 100;
+
+            document.getElementById("scoreResult").innerHTML =
+                "Your AI Readiness Score is: " + score + "/100";
+        }
+
+        // Generate robot grid
+        function createGrid() {
+            let rows = parseInt(document.getElementById("rows").value);
+            let columns = parseInt(document.getElementById("columns").value);
+            let grid = document.getElementById("robotGrid");
+
+            grid.innerHTML = "";
+            grid.style.gridTemplateColumns = "repeat(" + columns + ",1fr)";
+
+            for (let i = 0; i < rows * columns; i++) {
+                grid.innerHTML += "<div class='cell'>🤖</div>";
+            }
+        }
+
+        // Robot power event
+        document.getElementById("powerButton").addEventListener("click", function () {
+
+            let status = document.getElementById("status");
+            let button = document.getElementById("powerButton");
+
+            if (button.innerHTML === "Power ON") {
+                status.innerHTML = "Robot Status: ONLINE";
+                button.innerHTML = "Power OFF";
+            }
+            else {
+                status.innerHTML = "Robot Status: OFFLINE";
+                button.innerHTML = "Power ON";
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
