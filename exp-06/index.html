@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RoboPulse - JavaScript Styles & Animations</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>RoboPulse - AI & Robotics</h1>
+    <p>JavaScript Styles, Objects and Animations</p>
+</header>
+
+<nav>
+    <a href="#clock">System Clock</a>
+    <a href="#status">AI Status</a>
+    <a href="#robot">Robot Lab</a>
+    <a href="#profile">Robot Profile</a>
+</nav>
+
+<section id="clock" class="box">
+    <h2>AI System Clock</h2>
+    <p id="time">00:00:00</p>
+    <p>System time is updated every second using JavaScript.</p>
+</section>
+
+<section id="status" class="box">
+    <h2>AI System Status</h2>
+
+    <div id="statusCard">
+        <h3 id="statusText">SYSTEM ACTIVE</h3>
+        <p>RoboPulse AI monitoring system is running normally.</p>
+    </div>
+
+    <button onclick="changeStyle()">Change Status</button>
+    <button onclick="resetStyle()">Reset</button>
+
+    <p id="message">AI monitoring is currently active.</p>
+    <button onclick="hideMessage()">Hide Message</button>
+    <button onclick="showMessage()">Show Message</button>
+</section>
+
+<section id="robot" class="box">
+    <h2>Robot Animation</h2>
+
+    <div class="track">
+        <img src="robot.jpg" id="robotImg" alt="AI Robot">
+    </div>
+
+    <button onclick="moveRobot()">Start Robot</button>
+    <button onclick="stopRobot()">Stop Robot</button>
+</section>
+
+<section id="profile" class="box">
+    <h2>AI Robot Profile</h2>
+
+    <div class="profile">
+        <h3 id="robotName"></h3>
+        <p id="robotType"></p>
+        <p id="robotTask"></p>
+        <p id="robotStatus"></p>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 RoboPulse | AI & Robotics Blog</p>
+    <p>JavaScript Styles & Animations</p>
+</footer>
+
+<script>
+
+function displayTime(){
+    let d = new Date();
+    document.getElementById("time").innerHTML =
+        d.toLocaleTimeString();
+}
+
+setInterval(displayTime,1000);
+displayTime();
+
+function changeStyle(){
+    let card = document.getElementById("statusCard");
+    let text = document.getElementById("statusText");
+
+    card.style.backgroundColor = "#dbeafe";
+    card.style.border = "2px solid #2563eb";
+    text.innerHTML = "SYSTEM OPTIMIZED";
+}
+
+
+function resetStyle(){
+    let card = document.getElementById("statusCard");
+    let text = document.getElementById("statusText");
+
+    card.style.backgroundColor = "white";
+    card.style.border = "1px solid #ddd";
+    text.innerHTML = "SYSTEM ACTIVE";
+}
+
+
+function hideMessage(){
+    document.getElementById("message").style.display = "none";
+}
+
+function showMessage(){
+    document.getElementById("message").style.display = "block";
+}
+
+
+let position = 0;
+let animation;
+
+function moveRobot(){
+    let robot = document.getElementById("robotImg");
+
+    animation = setInterval(function(){
+        position++;
+
+        robot.style.left = position + "px";
+
+        if(position >= 500){
+            clearInterval(animation);
+        }
+    },10);
+}
+
+function stopRobot(){
+    clearInterval(animation);
+}
+
+
+class Robot{
+    constructor(name,type,task,status){
+        this.name = name;
+        this.type = type;
+        this.task = task;
+        this.status = status;
+    }
+}
+
+let roboX = new Robot(
+    "RoboX",
+    "AI Assistant Robot",
+    "Environmental Monitoring",
+    "Active"
+);
+
+document.getElementById("robotName").innerHTML =
+    roboX.name;
+
+document.getElementById("robotType").innerHTML =
+    "Type: " + roboX.type;
+
+document.getElementById("robotTask").innerHTML =
+    "Task: " + roboX.task;
+
+document.getElementById("robotStatus").innerHTML =
+    "Status: " + roboX.status;
+
+</script>
+
+</body>
+</html>
