@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>RoboPulse - jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial;
+            background: #eef5ff;
+            text-align: center
+        }
+
+        header,
+        footer {
+            background: #1f3b73;
+            color: white;
+            padding: 15px
+        }
+
+        .box {
+            background: white;
+            padding: 25px;
+            margin: 30px auto;
+            width: 60%;
+            border-radius: 10px
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            padding: 10px;
+            border: 0;
+            cursor: pointer
+        }
+
+        #result {
+            background: #dbeafe;
+            padding: 15px;
+            margin-top: 15px
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#btn").click(function () {
+                let a = parseInt($("#t1").val()) || 0;
+                let b = parseInt($("#t2").val()) || 0;
+                $("#result").html("Robot Power: " + (a + b) + " units").slideDown();
+            });
+            $("#toggle").click(function () {
+                $("#info").toggle();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <h2>RoboPulse - AI & Robotics</h2>
+        <p>Smart Robot Power Calculator</p>
+    </header>
+    <div class="box">
+        <h3>Robot Power Control</h3>
+        <p>Enter two power values:</p><br>
+        <input id="t1" type="number" placeholder="Power 1">
+        <input id="t2" type="number" placeholder="Power 2"><br><br>
+        <button id="btn">Calculate Power</button>
+        <div id="result" style="display:none"></div>
+        <br>
+        <button id="toggle">Robot Info</button>
+        <p id="info">RoboPulse AI monitors robot power levels.</p>
+    </div>
+    <footer>© 2026 RoboPulse | AI & Robotics</footer>
+</body>
+
+</html>
