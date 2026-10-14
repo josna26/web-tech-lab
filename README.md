@@ -18,6 +18,9 @@ This project demonstrates the use of HTML5 and CSS3 concepts through multiple we
 - [Experiment 2: Working with HTML5 Form and Media Elements](./exp-02)
 - [Experiment 3: Design a Web Page using HTML and CSS](./exp-03)
 - [Experiment 4: Develop a Sign-in and Sign-up Page with Navigation Bar using CSS](./exp-04)
+- [Experiment 5: JavaScript - DOM Elements & Events](./exp-05)
+- [Experiment 6: JavaScript - Styles & Animations](./exp-06)
+- [Experiment 7: Website Design with jQuery Actions](./exp-07)
 
 ## Theme
 **RoboPulse** is a fictional AI and Robotics platform designed to showcase modern technologies and web development concepts.
