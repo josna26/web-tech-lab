@@ -1,0 +1,63 @@
+name: Deploy Experiment 8
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: exp-08/package-lock.json
+
+      - name: Install dependencies
+        working-directory: exp-08
+        run: npm ci
+
+      - name: Build RoboPulse
+        working-directory: exp-08
+        run: npm run build
+
+      - name: Prepare website
+        run: |
+          mkdir -p site
+          for dir in exp-01 exp-02 exp-03 exp-04 exp-05 exp-06 exp-07; do
+            if [ -d "$dir" ]; then cp -R "$dir" site/; fi
+          done
+          mkdir -p site/exp-08
+          cp -R exp-08/dist/. site/exp-08/
+          touch site/.nojekyll
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+
+      - name: Deploy website
+        id: deployment
+        uses: actions/deploy-pages@v4
