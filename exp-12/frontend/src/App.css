@@ -1,0 +1,146 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f6ff;
+    color: #243b53;
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #1769aa;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+header p {
+    margin-bottom: 0;
+}
+
+.form-box,
+.records {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 10px #d6e1ef;
+}
+
+h2 {
+    color: #1769aa;
+    margin-top: 0;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+input {
+    flex: 1;
+    min-width: 180px;
+    padding: 12px;
+    border: 1px solid #b8c9dc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #1769aa;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 2px;
+}
+
+button:hover {
+    background-color: #104b7a;
+}
+
+.delete {
+    background-color: #d9534f;
+}
+
+.delete:hover {
+    background-color: #b52b27;
+}
+
+.cancel {
+    background-color: #667788;
+}
+
+.message {
+    color: #1769aa;
+    margin-bottom: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #eaf1f8;
+}
+
+.empty {
+    color: #667788;
+    text-align: center;
+    padding: 15px;
+}
+
+footer {
+    text-align: center;
+    color: #667788;
+    padding: 15px;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        margin: 10px auto;
+        padding: 12px;
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+    }
+}
